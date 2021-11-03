@@ -1,0 +1,39 @@
+{
+	"name": "gulpboilerplate",
+	"version": "1.0.0",
+	"description": "gulp boilerplate",
+	"main": "index.js",
+	"type": "module",
+	"browserslist": [
+		"> .5% and last 2 versions",
+		"IE 11",
+		"safari >= 12"
+	],
+	"license": "MIT",
+	"scripts": {
+		"start": "gulp",
+		"build": "gulp build"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.16.0",
+		"@babel/preset-env": "^7.16.0",
+		"autoprefixer": "^10.4.0",
+		"babel-loader": "^8.2.3",
+		"babel-plugin-module-resolver": "^4.1.0",
+		"babel-plugin-root-import": "^6.6.0",
+		"browser-sync": "^2.27.7",
+		"cssnano": "^5.0.9",
+		"del": "^6.0.0",
+		"gulp": "^4.0.2",
+		"gulp-babel": "^8.0.0",
+		"gulp-changed": "^4.0.3",
+		"gulp-concat": "^2.6.1",
+		"gulp-imagemin": "^8.0.0",
+		"gulp-postcss": "^9.0.1",
+		"gulp-sass": "^5.0.0",
+		"normalize-scss": "^7.0.1",
+		"postcss": "^8.3.11",
+		"sass": "^1.43.4",
+		"ssi": "^0.3.0"
+	}
+}
