@@ -1,10 +1,11 @@
 let fileswatch   = 'html,woff,scss,js'
 
 import pkg from 'gulp'
+
+// Определяем константы Gulp
 const { gulp, src, dest, parallel, series, watch } = pkg
 
 import browserSync   from 'browser-sync'
-import ssi           from 'ssi'
 import babel         from 'gulp-babel'
 import gulpSass      from 'gulp-sass'
 import dartSass      from 'sass'
@@ -15,14 +16,13 @@ import autoprefixer  from 'autoprefixer'
 import imagemin      from 'gulp-imagemin'
 import changed       from 'gulp-changed'
 import concat        from 'gulp-concat'
+import uglifier        from 'gulp-uglify'
 import del           from 'del'
 
 function browsersync() {
 	browserSync.init({
-		server: {
-			baseDir: 'app/'
-		},
-		ghostMode: { clicks: false },
+		server: { baseDir: 'app/' },
+		ghostMode: { clicks: false }, // Отключаем cross-device action
 		notify: false,
 		online: true
 	})
@@ -34,6 +34,7 @@ function scripts() {
 			presets: ['@babel/env']
 		}))
 		.pipe(concat('app.min.js'))
+		.pipe(uglifier())
 		.pipe(dest('app/js'))
 		.pipe(browserSync.stream())
 }
@@ -63,14 +64,10 @@ function buildcopy() {
 		'{app/js,app/css}/*.min.*',
 		'app/images/**/*.*',
 		'!app/images/src/**/*',
-		'app/fonts/**/*'
+		'app/fonts/**/*',
+		'app/*.html'
 	], { base: 'app/' })
 	.pipe(dest('dist'))
-}
-
-async function buildhtml() {
-	let includes = new ssi('app/', 'dist/', '/**/*.html')
-	includes.compile()
 }
 
 async function cleandist() {
@@ -87,5 +84,5 @@ function startwatch() {
 
 export { scripts, styles, images }
 export let assets = series(scripts, styles, images)
-export let build = series(cleandist, images, scripts, styles, buildcopy, buildhtml)
+export let build = series(cleandist, images, scripts, styles, buildcopy)
 export default series(scripts, styles, images, parallel(browsersync, startwatch))
