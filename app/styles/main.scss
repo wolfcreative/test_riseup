@@ -1,0 +1,139 @@
+@import "config";
+
+html{
+	font-size:16px;
+	line-height:24px;
+	font-family:'Work Sans', sans-serif;
+	background:#F7F7F7;
+}
+
+a{
+	color:#6665DD;
+	&:hover{color:darken(#6665DD, 14%);text-decoration:none}
+}
+
+.container{
+	max-width:1224px;width:100%;
+	display:flow-root;
+	margin-left:auto;margin-right:auto;
+	box-sizing:content-box;
+	padding-left:$grid-padding;padding-right:$grid-padding;
+}
+
+
+// GRID
+.grid{
+	display:flex;flex-wrap:wrap;margin:0 0 0 (-$grid-padding);padding:0;list-style:none;
+
+	> *{padding-left:$grid-padding;margin-bottom:$grid-padding}
+}
+
+
+// WIDTH
+[class*="width-"]{max-width:100%;width:100%;box-sizing:border-box}
+
+.width-1-1{width:100%}
+.width-expand{min-width:1px;flex:1}
+
+.width-auto{width:auto}
+.width-medium{width:264px}
+
+
+// CARD
+@mixin card-padding{
+	padding:24px 32px;
+}
+
+.card{
+	position:relative;
+	border-radius:8px;
+	box-shadow:1px 3px 3px rgba(62, 63, 64, 0.1);
+	box-sizing:border-box;
+	border:1px solid $color-gray-40;
+	background:#fff;
+	overflow:hidden;
+
+	&.card-body,.card-body{
+		padding:24px 32px;
+	}
+
+	.card-footer{
+		@include card-padding;
+		
+		padding-top:16px;padding-bottom:16px;
+		background:#FAFAFA;
+		border-top:1px solid $color-gray-40;
+	}
+}
+
+
+// HEADERS
+h1,h2,h3{font-family:'Work Sans', sans-serif;color:$color-gray-100;margin:0 0 20px 0;font-weight:normal}
+
+h2{font-size:24px;line-height:32px}
+
+
+// MARGIN
+.margin-remove{margin:0}
+.margin-remove-top{margin-top:0}
+.margin-remove-bottom{margin-bottom:0}
+.margin-remove-left{margin-left:0}
+.margin-remove-right{margin-right:0}
+
+.margin-top{margin-top:$grid-padding}
+.margin-bottom{margin-bottom:$grid-padding}
+.margin-left{margin-left:$grid-padding}
+.margin-right{margin-right:$grid-padding}
+
+
+// FORM
+.select{
+
+}
+
+.input{
+	&[type="text"], &[type="tel"], &[type="number"]{
+		height:40px;
+		border:1px solid $color-gray-70;
+		border-radius:6px;
+	}
+
+	&[type="radio"]{
+
+	}
+
+	&[type="checkbox"]{
+
+	}
+}
+
+// LIST
+.list{
+	list-style:none;padding:0;margin:0;
+
+	&.list-button li{
+		a{
+			background:#FFFFFF;
+			border:1px solid transparent;
+			border-bottom:1px solid $color-gray-40;
+			box-sizing:border-box;
+			padding:10px 20px 10px 42px;
+			display:block;
+			line-height:28px;
+			color:$color-gray-100;
+			text-decoration:none;
+			position:relative;
+	
+			&.active,&:hover{background:#F3F3F3}
+	
+			&:focus{background:#c2c2c2}
+	
+			svg{
+				top:50%;left:16px;
+				position:absolute;transform:translateY(-50%);
+			}
+		}
+
+		&:last-child a{border-bottom-color:transparent}
+	}
+}

@@ -1,0 +1,23 @@
+@import "../../node_modules/normalize.css/normalize";
+
+// FONTS
+@mixin font($fname, $fstyle, $fweight, $furl){
+	@font-face{
+		font-family:$fname;
+		font-style:$fstyle;
+		font-weight:$fweight;
+		src:url($furl) format('woff');
+	}
+}
+
+@include font('Work Sans', normal, 400, '../fonts/WorkSans-Regular.woff');
+@include font('Work Sans', normal, 600, '../fonts/WorkSans-SemiBold.woff');
+
+// COLORS
+$color-gray-100:#2F2F30;
+$color-gray-70:#A9ABAE;
+$color-gray-40:#DBDCDE;
+$color-primary:#00A651;
+
+// OTHER
+$grid-padding:24px;

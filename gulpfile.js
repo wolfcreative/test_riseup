@@ -16,7 +16,7 @@ import autoprefixer  from 'autoprefixer'
 import imagemin      from 'gulp-imagemin'
 import changed       from 'gulp-changed'
 import concat        from 'gulp-concat'
-import uglifier        from 'gulp-uglify'
+import uglifier      from 'gulp-uglify'
 import del           from 'del'
 
 function browsersync() {
