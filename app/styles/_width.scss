@@ -1,0 +1,22 @@
+[class*="width-"]{max-width:100%;width:100%;box-sizing:border-box}
+
+.width-1-1{width:100%}
+.width-1-2{width:50%}
+.width-expand{min-width:1px;flex:1}
+
+// --MEDIUM
+@media(min-width:960px){
+	.width-1-2\@m{width:50%}
+	
+	.width-expand\@m{min-width:1px;flex:1}
+
+	.width-auto\@m{width:auto}
+
+	.width-1-2\@m,.width-expand\@m,.width-auto\@m{
+		&:last-child{margin-top:$grid-padding}
+	}
+}
+
+.width-auto{width:auto}
+.width-small{width:264px}
+.width-medium{width:336px}

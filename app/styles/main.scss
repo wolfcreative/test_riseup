@@ -1,10 +1,15 @@
 @import "config";
+@import "margin";
+@import "grid";
+@import "width";
+@import "flex";
 
 html{
 	font-size:16px;
 	line-height:24px;
 	font-family:'Work Sans', sans-serif;
 	background:#F7F7F7;
+	text-rendering:optimizeLegibility; // WebKit-hack для шрифтов
 }
 
 a{
@@ -13,7 +18,7 @@ a{
 }
 
 .container{
-	max-width:1224px;width:100%;
+	max-width:1224px;
 	display:flow-root;
 	margin-left:auto;margin-right:auto;
 	box-sizing:content-box;
@@ -21,22 +26,111 @@ a{
 }
 
 
-// GRID
-.grid{
-	display:flex;flex-wrap:wrap;margin:0 0 0 (-$grid-padding);padding:0;list-style:none;
+// HEADERS
+h1,h2,h3{font-family:'Work Sans', sans-serif;color:$color-gray-100;margin:0 0 20px 0;font-weight:normal}
 
-	> *{padding-left:$grid-padding;margin-bottom:$grid-padding}
+h2{font-size:24px;line-height:32px}
+
+
+// FORM
+.icon{
+	// RESET
+	margin:0;
+	border:none;
+	border-radius:0;
+	overflow:visible;
+	font:inherit;
+	color:inherit;
+	text-transform:none;
+	padding:0;
+	background-color:transparent;
+	display:inline;
+	fill:currentcolor;
+	line-height:0;
+	pointer-events:none;
+
+	&.form-icon{
+		width:40px;
+		display:inline-flex;
+		position:absolute;top:0;bottom:0;left:0;
+		justify-content:center;
+		align-items:center;
+	
+		& + input{padding:0 4px 0 42px}
+	}
+}
+
+@mixin style-input{
+	height:40px;
+	border:1px solid $color-gray-70;
+	border-radius:6px;
+	box-sizing:border-box;
+	padding:4px 8px;
+}
+
+.select:not([multiple]):not([size]){
+	@include style-input;
+
+	cursor:pointer;
+	padding-right:24px;
+	background-image:url("data:image/svg+xml,%3Csvg width='11' height='6' viewBox='0 0 11 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 0.75L5.5 5.25L10 0.75' stroke='%236C6D6F' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+	background-repeat:no-repeat;
+	background-position:right 11px top 52%;
+
+	// Удаляем стрелочки
+	appearance:none;
+	&::-ms-expand{display:none}
+}
+
+.input{
+	&[type="text"], &[type="tel"], &[type="number"], &[type="search"]{
+		@include style-input;
+	}
+
+	&[type="radio"]{
+
+	}
+
+	&[type="checkbox"]{
+
+	}
 }
 
 
-// WIDTH
-[class*="width-"]{max-width:100%;width:100%;box-sizing:border-box}
+// LIST
+.list{
+	list-style:none;padding:0;margin:0;
 
-.width-1-1{width:100%}
-.width-expand{min-width:1px;flex:1}
+	&.list-button li{
+		a{
+			background:#FFFFFF;
+			border:1px solid transparent;
+			border-bottom:1px solid $color-gray-40;
+			box-sizing:border-box;
+			padding:10px 20px 10px 42px;
+			display:block;
+			line-height:28px;
+			color:$color-gray-100;
+			text-decoration:none;
+			position:relative;
+	
+			&.active,&:hover{background:$color-gray-30}
+	
+			&:focus{background:$color-gray-40}
+	
+			svg{
+				position:absolute;top:50%;left:16px;
+				transform:translateY(-50%);
+			}
+		}
 
-.width-auto{width:auto}
-.width-medium{width:264px}
+		&:last-child a{border-bottom-color:transparent}
+	}
+}
+
+
+// POSITION
+.position-relative{position:relative}
 
 
 // CARD
@@ -63,77 +157,13 @@ a{
 		padding-top:16px;padding-bottom:16px;
 		background:#FAFAFA;
 		border-top:1px solid $color-gray-40;
-	}
-}
 
-
-// HEADERS
-h1,h2,h3{font-family:'Work Sans', sans-serif;color:$color-gray-100;margin:0 0 20px 0;font-weight:normal}
-
-h2{font-size:24px;line-height:32px}
-
-
-// MARGIN
-.margin-remove{margin:0}
-.margin-remove-top{margin-top:0}
-.margin-remove-bottom{margin-bottom:0}
-.margin-remove-left{margin-left:0}
-.margin-remove-right{margin-right:0}
-
-.margin-top{margin-top:$grid-padding}
-.margin-bottom{margin-bottom:$grid-padding}
-.margin-left{margin-left:$grid-padding}
-.margin-right{margin-right:$grid-padding}
-
-
-// FORM
-.select{
-
-}
-
-.input{
-	&[type="text"], &[type="tel"], &[type="number"]{
-		height:40px;
-		border:1px solid $color-gray-70;
-		border-radius:6px;
-	}
-
-	&[type="radio"]{
-
-	}
-
-	&[type="checkbox"]{
-
-	}
-}
-
-// LIST
-.list{
-	list-style:none;padding:0;margin:0;
-
-	&.list-button li{
-		a{
-			background:#FFFFFF;
-			border:1px solid transparent;
-			border-bottom:1px solid $color-gray-40;
-			box-sizing:border-box;
-			padding:10px 20px 10px 42px;
-			display:block;
-			line-height:28px;
-			color:$color-gray-100;
-			text-decoration:none;
-			position:relative;
-	
-			&.active,&:hover{background:#F3F3F3}
-	
-			&:focus{background:#c2c2c2}
-	
-			svg{
-				top:50%;left:16px;
-				position:absolute;transform:translateY(-50%);
-			}
+		.input[type="search"]{
+			border:1px solid $color-gray-40;
 		}
 
-		&:last-child a{border-bottom-color:transparent}
+		.select{
+			border:none;background-color:transparent;
+		}
 	}
 }
