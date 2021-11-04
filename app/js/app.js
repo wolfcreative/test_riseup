@@ -4,63 +4,71 @@ document.addEventListener('DOMContentLoaded', () => {
     // 
     // В чём фича: у нас есть сетка, у нас есть классы ширины которые зависимые от размера экрана.
     // Вручную задавать margin для отступа сверху не получится из-за классов ширины. А значит нужно проставлять в нужный момент нужному блоку отступ сверху.
-    //
-    // Пока всё написано на jQuery, ибо с ним проще и быстрее. В будущем перепишу на чистый JS. Скорость обработки слишком очень важна.
 
     function grid(){
-        let grids = $('[data-grid]');
+        let classes = document.querySelectorAll('.grid-margin')
+        if (typeof classes !== undefined){
+            let classesArray = Object.keys(classes).map(e => classes[e])
+    
+            classesArray.forEach((el) => {
+                el.classList.remove('grid-margin');
+            })
+        }
 
-        $(grids).each(function( ) {
-            let blocks = $(this).children();
-            let arr = [];
+        let grids = document.querySelectorAll('[data-grid]')
+        let gridsArray = Object.keys(grids).map(e => grids[e])
 
-            $( blocks ).each(function( ) {
-                let $this = $(this);
-
-                let y = $this.position().top;
+        gridsArray.forEach((grid) => {
+            let blocks = grid.children
             
-                let rowBlocks = $this;
-            
-                for (let i = $this.index() - 1; i >= 0; i--) {
-                    let block = blocks.eq(i);
+            let blocksArray = Object.keys(blocks).map(e => blocks[e])
+            let arr = []
 
-                    if (block.position().top == y) {
-                        rowBlocks = rowBlocks.add(block);
-                    } else {
-                        break;
-                    }
-                }
+            blocksArray.forEach((block) => {
+                let $this = block
+
+                let y = $this.offsetTop
+            
+                let rowBlocks = []
                 
-                for (let i = $this.index() + 1; i < blocks.length; i++) {
-                    let block = blocks.eq(i);
+                for (let i = indexInParent(block) + 1; i < blocks.length; i++) {
+                    let element = blocks[i]
                         
-                    if (block.position().top == y || y - block.position().top > 0) {
-                        rowBlocks = rowBlocks.add(block);
+                    if (element.offsetTop != y) {
+                        rowBlocks.push(element)
                     } else {
-                        break;
+                        break
                     }
                 }
 
-                rowBlocks.addClass('grid-margin');
+                rowBlocks.forEach((el) => {
+                    el.classList.add('grid-margin')
+                })
                 
                 arr.push(rowBlocks)
-            });
+            })
+        })
+    }
 
-            arr.forEach(function (value, i) {
-                if (i == 0){
-                    value.removeClass('grid-margin')
-                }
-            });
-        });
+    function indexInParent(node) {
+        let children = node.parentNode.childNodes
+        let num = 0
+
+        for (let i=0; i<children.length; i++) {
+            if (children[i]==node) return num
+            if (children[i].nodeType==1) num++
+        }
+        
+        return -1
     }
 
     // Инициализация
     window.onload = () => {
         grid()
-    };
+    }
     
     // Ресайз окна
     window.onresize = () => {
         grid()
-    };
+    }
 })
