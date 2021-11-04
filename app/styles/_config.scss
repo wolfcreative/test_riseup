@@ -51,18 +51,32 @@ $color-floralwhite:#FFFBEC;
 
 
 // MIXINS
+@mixin transition{
+	transition:.1s ease-in-out;
+
+	&:hover,&:focus{transition:.1s ease-in-out;}
+}
+
 @mixin style-input{
 	height:40px;
 	border:1px solid $color-gray-70;
 	border-radius:6px;
 	box-sizing:border-box;
-	padding:4px 8px;
+	padding:4px 12px;
 }
 
 @mixin accessibility{
-	border:1px solid transparent;transition: .1s ease-in-out;
+	@include transition;
+	
+	border:1px solid transparent;
 
-	&:hover,&:focus{border-color:$color-primary!important;outline:0;box-shadow:0 0 0 3px rgba(43,183,123,.2);transition: .1s ease-in-out;}
+	&:hover,&:focus{
+		@include transition;
+
+		border-color:$color-primary!important;
+		outline:0;
+		box-shadow:0 0 0 3px rgba(43,183,123,.2);
+	}
 }
 
 

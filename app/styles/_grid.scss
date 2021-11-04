@@ -28,7 +28,7 @@
 
 		> * {padding-left:0}
 
-		> .grid-margin{margin-top:$grid-padding / 3}
+		> .grid-margin{margin-top:calc($grid-padding / 3)}
 	}
 
 	// DIVIDER

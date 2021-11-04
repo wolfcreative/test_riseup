@@ -5,6 +5,7 @@
 @import "flex";
 @import "card";
 @import "button";
+@import "range";
 
 html{
 	font-size:16px;
@@ -13,6 +14,10 @@ html{
 	background:#F7F7F7;
 	color:$color-gray-100;
 	text-rendering:optimizeLegibility; // WebKit-hack для шрифтов
+
+	@media (max-width:639px){
+		font-size:14px;
+	}
 }
 
 a{
@@ -40,6 +45,30 @@ h2,.h2{font-size:24px;line-height:32px}
 
 
 // FORM
+.form-horizontal{
+	.form-label{
+		display:block;
+		margin-bottom:5px;
+		font-size:12px;
+
+		@media(min-width:960px){
+			width:126px;
+			margin-top:8px;
+			float:left;
+			text-align:right;
+		}
+	}
+	
+	.form-controls{
+		display:block;
+		margin-bottom:5px;
+
+		@media(min-width:960px){
+			margin-left:142px;
+		}
+	}
+}
+
 .icon{
 	// RESET
 	margin:0;border:none;border-radius:6px;overflow:visible;color:inherit;text-transform:none;padding:0;background-color:transparent;display:inline;fill:currentcolor;line-height:0;pointer-events:none;
@@ -51,7 +80,7 @@ h2,.h2{font-size:24px;line-height:32px}
 		justify-content:center;
 		align-items:center;
 	
-		& + input{padding:0 4px 0 42px}
+		& + input{padding-left:42px}
 	}
 
 	&.icon-pointer{
@@ -62,33 +91,74 @@ h2,.h2{font-size:24px;line-height:32px}
 	}
 }
 
-.select:not([multiple]):not([size]){
-	@include style-input;
-	@include accessibility;
+input,select,textarea{
+	max-width:100%;width:100%;
 
-	cursor:pointer;
-	padding-right:24px;
-	background-image:url("data:image/svg+xml,%3Csvg width='11' height='6' viewBox='0 0 11 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 0.75L5.5 5.25L10 0.75' stroke='%236C6D6F' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
-	background-repeat:no-repeat;
-	background-position:right 11px top 52%;
-
-	// Удаляем стрелочки
 	appearance:none;
 	&::-ms-expand{display:none}
 }
 
+.select:not([multiple]):not([size]){
+	@include accessibility;
+	@include style-input;
+
+	cursor:pointer;
+	text-indent:-1.1px;
+	padding-right:24px;
+	background-image:url("data:image/svg+xml,%3Csvg width='11' height='6' viewBox='0 0 11 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 0.75L5.5 5.25L10 0.75' stroke='%236C6D6F' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+	background-repeat:no-repeat;
+	background-position:right 11px top 52%;
+}
+
 .input{
 	&[type="text"], &[type="tel"], &[type="number"], &[type="search"]{
-		@include style-input;
 		@include accessibility;
+		@include style-input;
+	}
+	
+	&[type="radio"], &[type="checkbox"] + span:before{
+		width:24px;
+		height:24px;
+		border:1px solid $color-gray-70;
+		border-radius:50%;
+		vertical-align:middle;
+		position:relative;
+		margin-top:-4px;
+		margin-right:12px;
+		box-sizing:border-box;
+		cursor:pointer;
 	}
 
 	&[type="radio"]{
+		&:checked{
+			border:2px solid $color-primary-nontext;
+			background:url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='12' height='12' rx='6' fill='%232EB670'/%3E%3C/svg%3E%0A") no-repeat center;
+		}
 
+		&:checked::-ms-check{
+			border:2px solid $color-primary-nontext;
+			color:$color-primary-nontext;
+		}
 	}
 
 	&[type="checkbox"]{
+		position:absolute;left:-999em;
 
+		+ span{
+			cursor:pointer; // for ie
+
+			&:before{
+				content: "";
+				display: inline-block;
+				border-radius: 4px;
+				margin-right:6px;
+			}
+		}
+
+		&:checked + span:before{
+			border:2px solid $color-primary-nontext;
+			background:url("data:image/svg+xml,%3Csvg width='16' height='12' viewBox='0 0 16 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.6654 1L5.4987 10.1667L1.33203 6' stroke='%2300A651' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A") no-repeat center;
+		}
 	}
 }
 
@@ -141,7 +211,7 @@ h2,.h2{font-size:24px;line-height:32px}
 			background-position-y:top 55%;
 
 			// Выравнивание для IE10+
-			@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {background-position-y:top 52%}
+			@media all and (-ms-high-contrast:none), (-ms-high-contrast:active) {background-position-y:top 52%}
 		}
 	}
 }

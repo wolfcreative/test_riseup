@@ -1,0 +1,94 @@
+$range-width:19px;
+$range-height:19px;
+
+.range-value{min-width:55px;box-sizing:border-box}
+
+.range{
+	box-sizing: border-box;
+	vertical-align: middle;
+	padding: 0;
+	margin-top:10px;
+	cursor: pointer;
+
+	&:focus {
+		outline: none;
+        
+		&::-ms-fill-lower {
+			background:$color-primary-nontext;
+		}
+		&::-ms-fill-upper {
+			background:$color-gray-40;
+		}
+	}
+
+    // CHROME
+	&::-webkit-slider-runnable-track {
+		// background:$color-gray-40;
+		border: 0;
+		width: 100%;
+		height: 3px;
+		cursor: pointer;
+	}
+	&::-webkit-slider-thumb {
+		margin-top: -8px;
+		width: $range-width;
+		height: $range-height;
+		background: $color-primary-nontext;
+		border: 0;
+		border-radius: 50px;
+		cursor: pointer;
+		-webkit-appearance: none;
+	}
+
+    // FF
+	&::-moz-range-track {
+		background: $color-gray-40;
+		border: 0;
+		width: 100%;
+		height: 3px;
+		cursor: pointer;
+	}
+	&::-moz-range-thumb {
+		width: $range-width;
+		height: $range-height;
+		background: $color-primary-nontext;
+		border: 0;
+		border-radius: 50px;
+		cursor: pointer;
+	}
+    &::-moz-range-progress {
+        background: $color-primary-nontext;
+    }
+
+    // IE
+	&::-ms-track {
+		background: transparent;
+		border-color: transparent;
+		border-width: 8px 0;
+		color: transparent;
+		width: 100%;
+		height: 3px;
+		cursor: pointer;
+	}
+	&::-ms-fill-lower {
+		background: #2aa666;
+		border: 0;
+	}
+	&::-ms-fill-upper {
+		background:$color-gray-40;
+		border: 0;
+	}
+	&::-ms-thumb {
+		width: $range-width;
+		height: $range-height;
+		background: $color-primary-nontext;
+		border: 0;
+		border-radius: 50px;
+		cursor: pointer;
+		margin-top: 0px;
+	}
+}
+
+@supports (-ms-ime-align:auto) {
+    .range{margin:0}
+}

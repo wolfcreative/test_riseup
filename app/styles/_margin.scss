@@ -6,16 +6,28 @@
 .margin-remove-right{margin-right:0!important}
 
 // BASIC
+.margin{
+    margin-bottom:$grid-padding;
+
+    +.margin{margin-top:$grid-padding!important}
+}
+
 .margin-top{margin-top:$grid-padding}
 .margin-bottom{margin-bottom:$grid-padding}
 .margin-left{margin-left:$grid-padding}
 .margin-right{margin-right:$grid-padding}
 
+// MEDIUM
+.margin-medium-top{margin-top:16px!important}
+.margin-medium-bottom{margin-bottom:16px!important}
+.margin-medium-left{margin-left:16px!important}
+.margin-medium-right{margin-right:16px!important}
+
 // SMALL
-.margin-small-top{margin-top:$grid-padding / 2.6!important}
-.margin-small-bottom{margin-bottom:$grid-padding / 2.6!important}
-.margin-small-left{margin-left:$grid-padding / 2.6!important}
-.margin-small-right{margin-right:$grid-padding / 2.6!important}
+.margin-small-top{margin-top:calc($grid-padding / 2.6)!important}
+.margin-small-bottom{margin-bottom:calc($grid-padding / 2.6)!important}
+.margin-small-left{margin-left:calc($grid-padding / 2.6)!important}
+.margin-small-right{margin-right:calc($grid-padding / 2.6)!important}
 
 // XSMALL
 .margin-xsmall-top{margin-top:4px!important}
