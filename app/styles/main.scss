@@ -3,12 +3,15 @@
 @import "grid";
 @import "width";
 @import "flex";
+@import "card";
+@import "button";
 
 html{
 	font-size:16px;
 	line-height:24px;
 	font-family:'Work Sans', sans-serif;
 	background:#F7F7F7;
+	color:$color-gray-100;
 	text-rendering:optimizeLegibility; // WebKit-hack для шрифтов
 }
 
@@ -27,22 +30,21 @@ a{
 
 
 // HEADERS
-h1,h2,h3{
+h1,h2,h3,.h1,.h2,.h3{
 	font-family:'Work Sans', sans-serif;
-	color:$color-gray-100;
 	margin:0 0 20px 0;
 	font-weight:normal;
 }
 
-h2{font-size:24px;line-height:32px}
+h2,.h2{font-size:24px;line-height:32px}
 
 
 // FORM
 .icon{
 	// RESET
-	margin:0;border:none;border-radius:0;overflow:visible;font:inherit;color:inherit;text-transform:none;padding:0;background-color:transparent;display:inline;fill:currentcolor;line-height:0;pointer-events:none;
+	margin:0;border:none;border-radius:6px;overflow:visible;color:inherit;text-transform:none;padding:0;background-color:transparent;display:inline;fill:currentcolor;line-height:0;pointer-events:none;
 
-	&.form-icon{
+	&.icon-form{
 		width:40px;
 		display:inline-flex;
 		position:absolute;top:0;bottom:0;left:0;
@@ -51,18 +53,18 @@ h2{font-size:24px;line-height:32px}
 	
 		& + input{padding:0 4px 0 42px}
 	}
-}
 
-@mixin style-input{
-	height:40px;
-	border:1px solid $color-gray-70;
-	border-radius:6px;
-	box-sizing:border-box;
-	padding:4px 8px;
+	&.icon-pointer{
+		cursor:pointer;pointer-events:inherit;
+		> *{pointer-events:none}
+
+		@include accessibility;
+	}
 }
 
 .select:not([multiple]):not([size]){
 	@include style-input;
+	@include accessibility;
 
 	cursor:pointer;
 	padding-right:24px;
@@ -78,9 +80,7 @@ h2{font-size:24px;line-height:32px}
 .input{
 	&[type="text"], &[type="tel"], &[type="number"], &[type="search"]{
 		@include style-input;
-
-
-		&:focus{background-color:$color-gray-30}
+		@include accessibility;
 	}
 
 	&[type="radio"]{
@@ -125,49 +125,23 @@ h2{font-size:24px;line-height:32px}
 }
 
 
-// POSITION
-.position-relative{position:relative}
-
-
 // CARD
-@mixin card-padding{
-	padding:24px 32px;
-}
-
 .card{
-	position:relative;
-	border-radius:8px;
-	box-shadow:1px 3px 3px rgba(62, 63, 64, 0.1);
-	box-sizing:border-box;
-	border:1px solid $color-gray-40;
-	background:#fff;
-	overflow:hidden;
-
-	&.card-body,.card-body{
-		padding:24px 32px;
-	}
-
 	.card-footer{
-		@include card-padding;
-		
-		padding-top:16px;padding-bottom:16px;
-		background:#FAFAFA;
-		border-top:1px solid $color-gray-40;
+		&.background-floralwhite{border-width:2px}
 
 		.input[type="search"]{
 			border:1px solid $color-gray-40;
 		}
 
 		.select{
-			border:none;
+			border-color:transparent;
 			background-color:transparent;
 			background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%232F2F30' stroke-linecap='round'/%3E%3C/svg%3E%0A");
 			background-position-y:top 55%;
 
 			// Выравнивание для IE10+
 			@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {background-position-y:top 52%}
-
-			&:hover,&:focus{background-color:$color-gray-40}
 		}
 	}
 }

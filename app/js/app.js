@@ -35,7 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     let element = blocks[i]
                         
                     if (element.offsetTop != y) {
-                        rowBlocks.push(element)
+                        if (element.offsetTop - y > 10 || element.offsetTop - y < -10){ // Допустимая погрешность случай flex-middle
+                            rowBlocks.push(element)
+                        } else {
+                            break
+                        }
                     } else {
                         break
                     }
@@ -50,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
+    // Аналог jQuery.index()
     function indexInParent(node) {
         let children = node.parentNode.childNodes
         let num = 0

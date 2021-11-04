@@ -12,9 +12,7 @@
 
 	.width-auto\@m{width:auto}
 
-	.width-1-2\@m,.width-expand\@m,.width-auto\@m{
-		&:last-child{margin-top:$grid-padding}
-	}
+	.width-medium\@m{width:336px}
 }
 
 .width-auto{width:auto}
