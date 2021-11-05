@@ -22,9 +22,8 @@ import del           from 'del'
 function browsersync() {
 	browserSync.init({
 		server: { baseDir: 'app/' },
-		ghostMode: { clicks: false }, // Отключаем cross-device action
-		notify: false,
-		online: true
+		ghostMode: false,
+		notify: false
 	})
 }
 
@@ -41,7 +40,7 @@ function scripts() {
 
 function styles() {
 	return src([`app/styles/*.*`, `!app/styles/_*.*`])
-		.pipe(eval(sass)({ 'include css': true }))
+		.pipe(sass().on('error', sass.logError))
 		.pipe(postCss([
 			autoprefixer({ grid: 'autoplace' }),
 			cssnano({ preset: ['default', { discardComments: { removeAll: true } }] })

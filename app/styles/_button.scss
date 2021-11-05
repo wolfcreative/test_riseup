@@ -1,26 +1,25 @@
 .button{
+    @include accessibility;
+
     height:48px;
     display:flex;
     align-items:center;
+    justify-content:center;
     margin:0;
     border:1px solid transparent;
     overflow:visible;
-    appearance:none;
     border-radius:8px;
     box-sizing:border-box;
     padding:0 24px;
-    font-size:16px;
     cursor:pointer;
 
     &.button-default{
-        @include accessibility;
-
-        background:#fff;border-color:$color-gray-70;
+        background:#fff;
+        border-color:$color-gray-70;
     }
 
     &.button-primary{
-        @include accessibility;
-        
-        background-color:$color-primary-nontext;color:#fff;
+        background-color:$color-primary-nontext;
+        color:#fff;
     }
 }
