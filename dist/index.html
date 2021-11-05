@@ -23,7 +23,7 @@
 					</div>
 		
 					<div class="card-footer">
-						<div class="grid flex-middle" data-grid>
+						<div class="grid child-width-1-1 child-width-auto@s flex-middle" data-grid="margin:margin-small-top">
 							<div>
 								<div class="position-relative">
 									<span class="icon icon-form">
@@ -53,7 +53,7 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="grid" data-grid>
-							<div class="width-expand@m">
+							<div class="width-expand@s">
 								<div class="flex flex-middle">
 									<span class="icon color-blue">
 										<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -126,80 +126,100 @@
 				</div>
 
 				<div class="card margin-top">
-					<div class="card-body">
-						<div class="form-horizontal">
-							<div class="margin">
-								<label class="form-label">Designation</label>
+					<div class="card-body padding-remove">
+						<ul class="tab margin-xlarge-top">
+							<li class="active"><a href="#">Behavior</a></li>
+							<li><a href="#">Appearance</a></li>
+							<li><a href="#">Custom Fields</a></li>
+							<li><a href="#">Questions</a></li>
+							<li><a href="#">URL Control</a></li>
+						</ul>
 
-								<div class="form-controls width-xmedium@m">
-									<select class="select">
-										<option>Match Checkout Setting</option>
-										<option>Match What Setting</option>
-										<option>Are you seriously?</option>
-										<option>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti molestias animi voluptates quod iste quidem facilis!</option>
-									</select>
-								</div>
-							</div>
-
-							<div class="margin">
-								<label class="form-label">Goal</label>
-
-								<div class="form-controls width-xmedium@m">
-									<div class="grid">
-										<div class="width-expand">
-											<input class="input" type="text" placeholder="Maybe, 10$?" value="$10.00">
-										</div>
-
-										<div>
+						<div class="tab-container">
+							<div class="active">
+								<div class="form-horizontal">
+									<div class="margin">
+										<label class="form-label">Designation</label>
+		
+										<div class="form-controls width-xmedium@m">
 											<select class="select">
-												<option>USD</option>
-												<option>EUR</option>
-												<option>RUB</option>
+												<option>Match Checkout Setting</option>
+												<option>Match What Setting</option>
+												<option>Are you seriously?</option>
+												<option>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti molestias animi voluptates quod iste quidem facilis!</option>
 											</select>
+										</div>
+									</div>
+		
+									<div class="margin">
+										<label class="form-label">Goal</label>
+		
+										<div class="form-controls width-xmedium@m">
+											<div class="grid">
+												<div class="width-expand">
+													<input class="input" type="text" placeholder="Maybe, 10$?" value="$10.00">
+												</div>
+		
+												<div>
+													<select class="select">
+														<option>USD</option>
+														<option>EUR</option>
+														<option>RUB</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+		
+									<div class="margin">
+										<div class="form-label margin-remove-top">Default Amount</div>
+		
+										<div class="form-controls width-xmedium@m">
+											<label><input class="input" type="radio" name="radio">Match Checkout Setting</label>
+											
+											<div class="margin-medium-top"></div>
+		
+											<label><input class="input" type="radio" name="radio" checked>Customize</label>
+										</div>
+									</div>
+		
+									<div class="margin">
+										<div class="form-label margin-remove-top"></div>
+		
+										<div class="form-controls">
+											<label>
+												<input class="input" type="checkbox" name="checkbox" checked>
+												<span></span>
+												Allow donor to change default currency
+											</label>
+										</div>
+									</div>
+		
+									<div class="margin">
+										<label class="form-label">Border size</label>
+		
+										<div class="form-controls width-xmedium@m">
+											<input class="range" type="range" min="0" max="99" step="1" value="3" data-range-caption="px">
+										</div>
+									</div>
+		
+									<div class="margin">
+										<label class="form-label">Border radius</label>
+		
+										<div class="form-controls width-xmedium@m">
+											<input class="range" type="range" min="0" max="30" step="1" value="15" data-range-caption="px">
 										</div>
 									</div>
 								</div>
 							</div>
 
-							<div class="margin">
-								<div class="form-label margin-remove-top">Default Amount</div>
+							<div></div>
 
-								<div class="form-controls width-xmedium@m">
-									<label><input class="input" type="radio" name="radio">Match Checkout Setting</label>
-									
-									<div class="margin-medium-top"></div>
+							<div></div>
 
-									<label><input class="input" type="radio" name="radio" checked>Customize</label>
-								</div>
-							</div>
+							<div></div>
 
-							<div class="margin">
-								<div class="form-label margin-remove-top"></div>
-
-								<div class="form-controls">
-									<label>
-										<input class="input" type="checkbox" name="checkbox" checked>
-										<span></span>
-										Allow donor to change default currency
-									</label>
-								</div>
-							</div>
-
-							<div class="margin">
-								<label class="form-label">Border size</label>
-
-								<div class="form-controls width-xmedium@m">
-									<input class="range" type="range" min="0" max="99" step="1" value="3" data-range-caption="px">
-								</div>
-							</div>
-
-							<div class="margin">
-								<label class="form-label">Border radius</label>
-
-								<div class="form-controls width-xmedium@m">
-									<input class="range" type="range" min="0" max="30" step="1" value="15" data-range-caption="px">
-								</div>
-							</div>
+							<div></div>
 						</div>
 					</div>
 
@@ -217,67 +237,69 @@
 				</div>
 			</div>
 
-			<div class="width-auto">
-				<div class="card width-small">
-					<ul class="list list-button">
-						<li>
-							<a href="#">
-								<span class="icon">
-									<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M12.75 0.75L15.75 3.75L12.75 6.75" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
-										<path d="M2.25 8.25V6.75C2.25 5.95435 2.56607 5.19129 3.12868 4.62868C3.69129 4.06607 4.45435 3.75 5.25 3.75H15.75" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
-										<path d="M5.25 17.25L2.25 14.25L5.25 11.25" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
-										<path d="M15.75 9.75V11.25C15.75 12.0456 15.4339 12.8087 14.8713 13.3713C14.3087 13.9339 13.5456 14.25 12.75 14.25H2.25" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
-									</svg>
-								</span>
-								
-								Change Amount
-							</a>
-						</li>
-
-						<li>
-							<a href="#">
-								<span class="icon">
-									<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M13.3199 3.95989V2.75677C13.3199 1.55761 13.0611 1.21165 11.5732 1.60405C10.4802 1.89241 4.08485 3.66541 4.08485 3.66541C2.11529 4.40773 1.81469 5.03953 1.81469 6.47917L1.79993 7.36297" stroke="#2F2F30" stroke-miterlimit="10" stroke-linejoin="round"/>
-										<path d="M12.5011 11.5C11.9478 11.5 11.4999 11.0523 11.4999 10.5006C11.4999 9.9484 11.9484 9.5 12.5011 9.5C13.0509 9.5 13.4999 9.94788 13.4999 10.5006C13.4999 11.0528 13.0514 11.5 12.5011 11.5Z" stroke="#2F2F30"/>
-										<rect x="1.7998" y="5.04974" width="14.4" height="11.15" rx="1.5" stroke="#2F2F30"/>
-									</svg>
-								</span>
+			<div class="width-auto flex"> <!-- flex fix for webkit -->
+				<div class="width-small">
+					<div class="card position-sticky">
+						<ul class="list list-button">
+							<li>
+								<a href="#">
+									<span class="icon">
+										<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M12.75 0.75L15.75 3.75L12.75 6.75" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
+											<path d="M2.25 8.25V6.75C2.25 5.95435 2.56607 5.19129 3.12868 4.62868C3.69129 4.06607 4.45435 3.75 5.25 3.75H15.75" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
+											<path d="M5.25 17.25L2.25 14.25L5.25 11.25" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
+											<path d="M15.75 9.75V11.25C15.75 12.0456 15.4339 12.8087 14.8713 13.3713C14.3087 13.9339 13.5456 14.25 12.75 14.25H2.25" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
+										</svg>
+									</span>
 									
-								Change Payment Method
-							</a>
-						</li>
+									Change Amount
+								</a>
+							</li>
 
-						<li>
-							<a href="#" class="active">
-								<span class="icon">
-									<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M14.25 3H3.75C2.92157 3 2.25 3.67157 2.25 4.5V15C2.25 15.8284 2.92157 16.5 3.75 16.5H14.25C15.0784 16.5 15.75 15.8284 15.75 15V4.5C15.75 3.67157 15.0784 3 14.25 3Z" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
-										<path d="M12 1.5V4.5" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
-										<path d="M6 1.5V4.5" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
-										<path d="M2.25 7.5H15.75" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
-									</svg>
-								</span>
+							<li>
+								<a href="#">
+									<span class="icon">
+										<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M13.3199 3.95989V2.75677C13.3199 1.55761 13.0611 1.21165 11.5732 1.60405C10.4802 1.89241 4.08485 3.66541 4.08485 3.66541C2.11529 4.40773 1.81469 5.03953 1.81469 6.47917L1.79993 7.36297" stroke="#2F2F30" stroke-miterlimit="10" stroke-linejoin="round"/>
+											<path d="M12.5011 11.5C11.9478 11.5 11.4999 11.0523 11.4999 10.5006C11.4999 9.9484 11.9484 9.5 12.5011 9.5C13.0509 9.5 13.4999 9.94788 13.4999 10.5006C13.4999 11.0528 13.0514 11.5 12.5011 11.5Z" stroke="#2F2F30"/>
+											<rect x="1.7998" y="5.04974" width="14.4" height="11.15" rx="1.5" stroke="#2F2F30"/>
+										</svg>
+									</span>
+										
+									Change Payment Method
+								</a>
+							</li>
 
-								Change Date
-							</a>
-						</li>
+							<li>
+								<a href="#" class="active">
+									<span class="icon">
+										<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M14.25 3H3.75C2.92157 3 2.25 3.67157 2.25 4.5V15C2.25 15.8284 2.92157 16.5 3.75 16.5H14.25C15.0784 16.5 15.75 15.8284 15.75 15V4.5C15.75 3.67157 15.0784 3 14.25 3Z" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
+											<path d="M12 1.5V4.5" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
+											<path d="M6 1.5V4.5" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
+											<path d="M2.25 7.5H15.75" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
+										</svg>
+									</span>
 
-						<li>
-							<a href="#">
-								<span class="icon">
-									<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
-										<path d="M11.25 6.75L6.75 11.25" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
-										<path d="M6.75 6.75L11.25 11.25" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
-									</svg>
-								</span>
-								
-								Cancel Recurring
-							</a>
-						</li>
-					</ul>
+									Change Date
+								</a>
+							</li>
+
+							<li>
+								<a href="#">
+									<span class="icon">
+										<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
+											<path d="M11.25 6.75L6.75 11.25" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
+											<path d="M6.75 6.75L11.25 11.25" stroke="#2F2F30" stroke-linecap="round" stroke-linejoin="round"/>
+										</svg>
+									</span>
+									
+									Cancel Recurring
+								</a>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>

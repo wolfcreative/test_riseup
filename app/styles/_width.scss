@@ -1,10 +1,12 @@
-[class*="width-"]{max-width:100%;width:100%;box-sizing:border-box}
+[class^="width-"]{max-width:100%;width:100%;box-sizing:border-box}
 
 .width-1-1{width:100%}
 .width-1-2{width:50%}
 .width-expand{min-width:1px;flex:1}
 
-// --MEDIUM
+.child-width-1-1 > *{width:100%}
+
+// MEDIUM
 @media(min-width:960px){
 	.width-1-2\@m{width:50%}
 	
@@ -14,6 +16,15 @@
 
 	.width-medium\@m{width:336px}
 	.width-xmedium\@m{width:296px}
+}
+
+// SMALL
+@media(min-width:640px){
+	.width-expand\@s{min-width:1px;flex:1}
+
+	.width-auto\@s{width:auto}
+
+	.child-width-auto\@s > *{width:auto}
 }
 
 .width-auto{width:auto}

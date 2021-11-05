@@ -10,12 +10,20 @@
     margin-bottom:$grid-padding;
 
     +.margin{margin-top:$grid-padding!important}
+
+    &:last-child{margin-bottom:0}
 }
 
 .margin-top{margin-top:$grid-padding}
 .margin-bottom{margin-bottom:$grid-padding}
 .margin-left{margin-left:$grid-padding}
 .margin-right{margin-right:$grid-padding}
+
+// XLARGE
+.margin-xlarge-top{margin-top:32px!important}
+.margin-xlarge-bottom{margin-bottom:32px!important}
+.margin-xlarge-left{margin-left:32px!important}
+.margin-xlarge-right{margin-right:32px!important}
 
 // MEDIUM
 .margin-medium-top{margin-top:16px!important}

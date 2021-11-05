@@ -1,17 +1,21 @@
 $range-width:19px;
 $range-height:19px;
 
-.range-value{min-width:55px;box-sizing:border-box}
+.range-value{min-width:38px;box-sizing:border-box}
 
 .range{
+	@include accessibility;
+	
 	box-sizing: border-box;
 	vertical-align: middle;
 	padding: 0;
 	margin-top:10px;
 	cursor: pointer;
 
+	@media(min-width:960px){max-width:218px}
+
 	&:focus {
-		outline: none;
+		outline:none;
         
 		&::-ms-fill-lower {
 			background:$color-primary-nontext;

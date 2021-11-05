@@ -37,7 +37,6 @@ $color-floralwhite:#FFFBEC;
 .color-primary{color:$color-primary}
 .color-blue{color:$color-blue}
 
-
 .background-floralwhite{background-color:#FFFBEC!important}
 
 
@@ -48,6 +47,29 @@ $color-floralwhite:#FFFBEC;
 
 // LINE-HEIGHT
 .line-height-20{line-height:20px}
+
+
+// PADDING
+.padding-remove{padding:0!important}
+
+
+// POSITION
+.position-relative{position:relative}
+.position-sticky{
+	@supports (position:sticky){
+		position:sticky;top:24px;
+	}
+}
+
+
+// DISPLAY
+.display-block{display:block}
+.display-inline-block{display:inline-block}
+
+
+
+// OTHER
+$grid-padding:24px;
 
 
 // MIXINS
@@ -79,15 +101,6 @@ $color-floralwhite:#FFFBEC;
 	}
 }
 
-
-// POSITION
-.position-relative{position:relative}
-
-
-// DISPLAY
-.display-block{display:block}
-.display-inline-block{display:inline-block}
-
-
-// OTHER
-$grid-padding:24px;
+@mixin mobile_container-padding{
+	@media (max-width:959px){padding:20px 24px}
+}
