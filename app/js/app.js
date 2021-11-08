@@ -174,7 +174,8 @@ function stickyForLegacy(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    grid()
+    setTimeout(grid, 100);
+    
     initInputRange()
     stickyForLegacy()
 })

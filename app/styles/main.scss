@@ -21,7 +21,7 @@ html{
 a{
 	color:#6665DD;
 
-	&:hover{color:darken(#6665DD, 14%);text-decoration:none}
+	&:hover{color:$color-gray-100;text-decoration:none}
 }
 
 .container{
@@ -214,9 +214,7 @@ input,select,textarea{
 	.card-footer{
 		&.background-floralwhite{border-width:2px}
 
-		.input[type="search"]{
-			border:1px solid $color-gray-40;
-		}
+		.input[type="search"]{border:1px solid $color-gray-40}
 
 		.select{
 			border-color:transparent;

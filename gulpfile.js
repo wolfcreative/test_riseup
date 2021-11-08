@@ -1,4 +1,4 @@
-let fileswatch   = 'html,woff,scss,js'
+let fileswatch = 'html,woff,scss,js'
 
 import pkg from 'gulp'
 
@@ -81,7 +81,5 @@ function startwatch() {
 	watch(`app/**/*.{${fileswatch}}`, { usePolling: true }).on('change', browserSync.reload)
 }
 
-export { scripts, styles, images }
-export let assets = series(scripts, styles, images)
 export let build = series(cleandist, images, scripts, styles, buildcopy)
 export default series(scripts, styles, images, parallel(browsersync, startwatch))
