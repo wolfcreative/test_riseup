@@ -40,7 +40,13 @@ h1,h2,.h1,.h2{
 	font-weight:normal;
 }
 
-h2,.h2{font-size:24px;line-height:32px}
+h2,.h2{
+	font-size:24px;line-height:32px;
+
+	@media(max-width:639px){
+		font-size:22px;line-height:28px;
+	}
+}
 
 
 // FORM
