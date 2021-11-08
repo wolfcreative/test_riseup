@@ -275,16 +275,16 @@ input,select,textarea{
 			white-space:nowrap;
 		}
 
+		&:hover > *{
+			color:$color-primary;
+		}
+
 		&.active > *{
 			border-color:$color-gray-40 $color-gray-40 #fff;
 			color:$color-primary;
 		}
 
-		&:hover > *{
-			color:$color-primary;
-		}
-
-		*:focus{
+		&:not(.active):focus{
 			outline:0;
 			background:$color-gray-30;
 		}
@@ -297,9 +297,4 @@ input,select,textarea{
 
 		&:not(.active){display:none}
 	}
-}
-
-// SCROLLBAR
-scrollbar[orient="horizontal"]{
-	top:10px
 }
