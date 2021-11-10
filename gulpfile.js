@@ -1,8 +1,5 @@
-let fileswatch = 'html,woff,scss,js'
-
 import pkg from 'gulp'
 
-// Определяем константы Gulp
 const { gulp, src, dest, parallel, series, watch } = pkg
 
 import browserSync   from 'browser-sync'
@@ -17,6 +14,7 @@ import imagemin      from 'gulp-imagemin'
 import changed       from 'gulp-changed'
 import concat        from 'gulp-concat'
 import uglifier      from 'gulp-uglify'
+import inject        from 'gulp-inject'
 import del           from 'del'
 
 function browsersync() {
@@ -39,14 +37,14 @@ function scripts() {
 }
 
 function styles() {
-	return src([`app/styles/*.*`, `!app/styles/_*.*`])
+	return src(['app/styles/*.*', '!app/styles/_*.*', '!app/styles/*.min.css'])
 		.pipe(sass().on('error', sass.logError))
 		.pipe(postCss([
 			autoprefixer({ grid: 'autoplace' }),
 			cssnano({ preset: ['default', { discardComments: { removeAll: true } }] })
 		]))
 		.pipe(concat('app.min.css'))
-		.pipe(dest('app/css'))
+		.pipe(dest('app/styles'))
 		.pipe(browserSync.stream())
 }
 
@@ -58,9 +56,15 @@ function images() {
 		.pipe(browserSync.stream())
 }
 
-function buildcopy() {
+function insertJsCss() {
+	return src('app/*.html')
+		.pipe(inject(src('app/**/*.min.{css,js}', {read: false}), {relative: true}))
+		.pipe(dest('app'));
+}
+
+function buildCopy() {
 	return src([
-		'{app/js,app/css}/*.min.*',
+		'{app/js,app/styles}/*.min.*',
 		'app/images/**/*.*',
 		'!app/images/src/**/*',
 		'app/fonts/**/*',
@@ -69,17 +73,19 @@ function buildcopy() {
 	.pipe(dest('dist'))
 }
 
-async function cleandist() {
+async function cleanDist() {
 	del('dist/**/*', { force: true })
 }
 
-function startwatch() {
-	watch(`app/styles/*`, { usePolling: true }, styles)
+function startWatch() {
+	watch(['app/styles/*', '!app/styles/*.min.css'], { usePolling: true }, styles)
+
 	watch(['app/js/**/*.js', '!app/js/**/*.min.js'], { usePolling: true }, scripts)
+
 	watch('app/images/src/**/*', { usePolling: true }, images)
 
-	watch(`app/**/*.{${fileswatch}}`, { usePolling: true }).on('change', browserSync.reload)
+	watch(`app/**/*.{html, woff, js}`, { usePolling: true }).on('change', browserSync.reload)
 }
 
-export let build = series(cleandist, images, scripts, styles, buildcopy)
-export default series(scripts, styles, images, parallel(browsersync, startwatch))
+export let build = series(cleanDist, images, scripts, styles, insertJsCss, buildCopy)
+export default series(scripts, styles, images, insertJsCss, parallel(browsersync, startWatch))
