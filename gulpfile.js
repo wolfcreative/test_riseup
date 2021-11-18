@@ -3,7 +3,6 @@ import pkg from 'gulp'
 const { gulp, src, dest, parallel, series, watch } = pkg
 
 import browserSync   from 'browser-sync'
-import babel         from 'gulp-babel'
 import gulpSass      from 'gulp-sass'
 import dartSass      from 'sass'
 const  sass          = gulpSass(dartSass)
@@ -13,8 +12,10 @@ import autoprefixer  from 'autoprefixer'
 import imagemin      from 'gulp-imagemin'
 import changed       from 'gulp-changed'
 import concat        from 'gulp-concat'
-import uglifier      from 'gulp-uglify'
 import inject        from 'gulp-inject'
+import webpackStream from 'webpack-stream'
+import webpack       from 'webpack'
+import TerserPlugin  from 'terser-webpack-plugin'
 import del           from 'del'
 
 function browsersync() {
@@ -27,17 +28,56 @@ function browsersync() {
 
 function scripts() {
 	return src(['app/js/*.js', '!app/js/*.min.js'])
-		.pipe(babel({
-			presets: ['@babel/env']
-		}))
+		.pipe(webpackStream({
+			mode: 'production',
+			performance: { hints: false },
+			module: {
+				rules: [
+					{
+						test: /\.m?js$/,
+						exclude: /(node_modules)/,
+						use: {
+							loader: 'babel-loader',
+							options: {
+								presets: [
+									[
+										"@babel/preset-env", 
+										{
+											"useBuiltIns": "usage",
+											"corejs": 3,
+										},
+									]
+								]
+							}
+						}
+					}
+				]
+			},
+			optimization: {
+				minimize: true,
+				minimizer: [
+					new TerserPlugin({
+						terserOptions: { format: { comments: false } },
+						extractComments: false
+					})
+				]
+			},
+		}, webpack)).on('error', function handleError() {
+			this.emit('end')
+		})
 		.pipe(concat('app.min.js'))
-		.pipe(uglifier())
 		.pipe(dest('app/js'))
 		.pipe(browserSync.stream())
 }
 
 function styles() {
-	return src(['app/styles/*.*', '!app/styles/_*.*', '!app/styles/*.min.css'])
+	let modules = [
+		'node_modules/normalize.css/normalize.css',
+		'app/styles/*.*',
+		'!app/styles/*.min.css'
+	];
+
+	return src(modules)
 		.pipe(sass().on('error', sass.logError))
 		.pipe(postCss([
 			autoprefixer({ grid: 'autoplace' }),

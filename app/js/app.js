@@ -10,48 +10,44 @@ function grid(){
     marginClass = marginClassAction = 'grid-margin'
 
     // Ищем все дочерние блоки у сеток
-    let classes = [].slice.call(
-        document.querySelectorAll(`
+    let classes = [...document.querySelectorAll(`
             .grid > [class*=${marginClass}], 
             .grid > [class*=margin-]
-        `)
-    )
+    `)]
 
     // Удаляем у них классы-отступы
     if (typeof classes !== undefined){
-        classes.forEach((el) => {
+        for (let el of classes){
             el.classList.remove(marginClass);
             
             el.className = el.className.replace(/margin-.\S*/, '');
-        })
+        }
     }
 
     // Ищем все сетки
-    let grids = [].slice.call(document.querySelectorAll('[data-grid]'))
+    let grids = [...document.querySelectorAll('[data-grid]')]
     
-    grids.forEach((grid) => {
+    for (let grid of grids){
         marginClassAction = marginClass
 
         // Забираем параметры
         let params = grid.getAttribute('data-grid').split(';');
 
         if (params.length > 0){
-            params.forEach((param) => {
+            for (let param of params){
                 switch(param.split(':')[0]){
                     // Как видно - пока параметр только один. Это отсуп сверху
                     case 'margin':
                         marginClassAction = param.split(':')[1]
                     break;
                 }
-            })
+            }
         }
 
         // Получаем дочерние блоки
-        let blocks = grid.children
+        let blocks = [...grid.children]
 
-        let blocksArray = [].slice.call(blocks)
-
-        blocksArray.forEach((block) => {
+        for (let block of blocks){
             let $this = block
 
             let y = $this.offsetTop
@@ -72,41 +68,31 @@ function grid(){
             }
 
             // Для всех подходящих элементов добавляем класс с отступом
-            rowBlocks.forEach((el) => {
+            for (let el of rowBlocks){
                 el.classList.add(marginClassAction)
-            })
-        })
-    })
+            }
+        }
+    }
 }
 
 // Аналог jQuery.index()
-function indexInParent(node) {
-    let children = node.parentNode.childNodes
-    let num = 0
-
-    for (let i=0; i<children.length; i++) {
-        if (children[i]==node) return num
-        if (children[i].nodeType==1) num++
-    }
-    
-    return -1
-}
+const indexInParent = el => [...el.parentNode.children].indexOf(el)
 
 // input[type=range]
 function initInputRange(){
-    let inputs = [].slice.call(document.querySelectorAll('input[type=range]'))
+    let inputs = [...document.querySelectorAll('input[type=range]')]
 
-    inputs.forEach((item) => {
-        item.classList.add('margin-remove')
+    for (let input of inputs){
+        input.classList.add('margin-remove')
 
         let caption = ''
-        if (item.getAttribute('data-range-caption')){
-            caption = item.getAttribute('data-range-caption')
+        if (input.getAttribute('data-range-caption')){
+            caption = input.getAttribute('data-range-caption')
         }
 
-        let value = item.value
+        let value = input.value
 
-        let oldHTML = item.outerHTML
+        let oldHTML = input.outerHTML
         let newHTML = `
             <div class="range-wrapper flex flex-middle" style="padding-top:9px">
                 ${oldHTML}
@@ -114,19 +100,19 @@ function initInputRange(){
             </div>
         `;
 
-        item.outerHTML = newHTML;
-    })
+        input.outerHTML = newHTML;
+    }
 
-    let inputs2 = [].slice.call(document.querySelectorAll('input[type=range]'))
-    inputs2.forEach((item) => {
-        commonInputRange(item)
+    let inputs2 = [...document.querySelectorAll('input[type=range]')]
+    for (let input of inputs2){
+        commonInputRange(input)
 
         "input change".split(" ").forEach((evt) => 
-            item.addEventListener(evt, () => {
-                commonInputRange(item)
+            input.addEventListener(evt, () => {
+                commonInputRange(input)
             })
         );
-    })
+    }
 }
 
 // input[type=range] commons

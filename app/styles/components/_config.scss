@@ -1,5 +1,3 @@
-@import "../../node_modules/normalize.css/normalize";
-
 @mixin font($fname, $fstyle, $fweight, $furl){
 	@font-face{
 		font-family:$fname;

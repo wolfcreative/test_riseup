@@ -1,11 +1,11 @@
-@import "config";
-@import "margin";
-@import "grid";
-@import "width";
-@import "flex";
-@import "card";
-@import "button";
-@import "range";
+@import "components/config";
+@import "components/margin";
+@import "components/grid";
+@import "components/width";
+@import "components/flex";
+@import "components/card";
+@import "components/button";
+@import "components/range";
 
 html{
 	font-size:16px;
